@@ -1,0 +1,7 @@
+{
+  "name": "face-detect",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
