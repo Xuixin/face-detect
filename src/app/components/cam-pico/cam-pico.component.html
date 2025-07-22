@@ -1,0 +1,94 @@
+<!-- cam-pico.component.html -->
+<div class="fixed inset-0  bg-none rounded-3xl  flex flex-col">
+
+
+    <!-- Header Bar - Fixed -->
+    <div class="shadow-lg px-6 py-6 flex-shrink-0">
+      <div class="flex items-center justify-end">
+
+
+        <button
+          (click)="cancel()"
+          class="group bg-white/10  w-5 h-5 hover:bg-red-500/80 text-white p-2.5 rounded-xl transition-all duration-200 hover:scale-105">
+          <i class="pi pi-times text-black text-lg group-hover:rotate-90 transition-transform duration-200"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content Area - Flexible Height -->
+    <div class="flex-1 p-6 overflow-hidden flex flex-col">
+
+      <!-- Camera Container - Takes Most Space -->
+      <div class="flex-1 relative bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50 min-h-0">
+
+        <!-- Canvas Container -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <canvas
+            #canvas
+            width="960"
+            height="720"
+            class="max-w-full max-h-full object-contain">
+          </canvas>
+        </div>
+
+        <!-- Glassmorphism Overlays -->
+        <!-- Status Indicator -->
+        <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md rounded-2xl px-4 py-3 border border-green-500/30">
+          <div class="flex items-center space-x-3">
+            <div class="relative">
+              <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+              <div class="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-75"></div>
+            </div>
+            <span class="text-green-400 font-mono text-sm font-semibold tracking-wider">LIVE DETECTION</span>
+          </div>
+        </div>
+
+        <!-- Stats Panel -->
+        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md rounded-2xl px-5 py-4 border border-blue-500/30 min-w-48">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-gray-300 text-sm font-medium">Faces Detected</span>
+              <div class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                {{ faces.length }}
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-gray-300 text-sm font-medium">Status</span>
+              <span class="text-green-400 text-xs font-mono font-semibold bg-green-500/20 px-2 py-1 rounded-full">
+                {{ running ? 'ACTIVE' : 'LOADING' }}
+              </span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-gray-300 text-sm font-medium">Resolution</span>
+              <span class="text-blue-300 text-xs font-mono">960×720</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div *ngIf="!running" class="absolute inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center">
+          <div class="bg-white/90 backdrop-blur-md rounded-3xl p-8 text-center shadow-2xl border border-white/20">
+            <div class="relative mb-6">
+              <div class="animate-spin rounded-full h-16 w-16 border-4 border-transparent border-t-blue-600 border-r-blue-600 mx-auto"></div>
+              <div class="absolute inset-0 animate-pulse rounded-full h-16 w-16 border-4 border-transparent border-b-purple-600 border-l-purple-600 mx-auto"></div>
+            </div>
+            <h3 class="text-gray-800 font-semibold text-lg mb-2">Initializing Camera</h3>
+            <p class="text-gray-600">Loading face detection model...</p>
+          </div>
+        </div>
+
+        <!-- Performance Indicator -->
+        <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md rounded-xl px-4 py-2 border border-yellow-500/30">
+          <div class="flex items-center space-x-2">
+            <i class="pi pi-gauge text-yellow-400 text-sm"></i>
+            <span class="text-yellow-400 text-xs font-mono">Real-time Processing</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+

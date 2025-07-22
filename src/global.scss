@@ -35,3 +35,33 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+@import "primeicons/primeicons.css";
+@import "tailwindcss";
+
+
+// เพิ่มใน styles.scss หรือ global styles
+
+::ng-deep .custom-face-detection-dialog {
+  .p-dialog {
+    border-radius: 1.5rem !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(16px) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  .p-dialog-header {
+    display: none !important; // ซ่อน header เพราะเรามี custom header
+  }
+
+  .p-dialog-content {
+    padding: 0 !important;
+    border-radius: 1.5rem !important;
+    overflow: hidden !important;
+  }
+
+  .p-dialog-mask {
+    backdrop-filter: blur(8px) !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+  }
+}
