@@ -1,9 +1,5 @@
 // home.page.ts
-import {
-  Component,
-  CUSTOM_ELEMENTS_SCHEMA,
-} from '@angular/core';
-
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { CamPicoComponent } from 'src/app/components/cam-pico/cam-pico.component';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -14,22 +10,20 @@ import { ButtonModule } from 'primeng/button';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [ CommonModule, ButtonModule],
+  imports: [CommonModule, ButtonModule],
   providers: [DialogService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomePage {
   ref: DynamicDialogRef | undefined;
 
-  constructor(
-    private dialogService: DialogService
-  ) {}
+  constructor(private dialogService: DialogService) {}
 
   async startCamera() {
     this.ref = this.dialogService.open(CamPicoComponent, {
       header: 'Real-time Face Detection With Pico.js',
       width: '95vw',
-      height: '95vh',
+      height: '100dvh',
       modal: true,
       dismissableMask: false,
       closable: false,
@@ -37,11 +31,13 @@ export class HomePage {
       resizable: false,
       styleClass: 'custom-face-detection-dialog',
       contentStyle: {
-        padding: '0',
+        padding:
+          'env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)',
         overflow: 'hidden',
         'border-radius': '1.5rem',
-        animation: 'up 0.5s ease-in-out'
+        animation: 'up 0.5s ease-in-out',
       },
+
       baseZIndex: 10000,
     });
 

@@ -1,5 +1,8 @@
 <!-- cam-pico.component.html -->
-<div class="fixed inset-0 bg-none rounded-3xl flex flex-col">
+<div
+  class="fixed inset-0 min-h-[100dvh]rounded-3xl flex flex-col"
+  style="padding-top: env(safe-area-inset-top)"
+>
   <!-- Header Bar - Fixed -->
   <div class="shadow-lg px-4 py-4 md:px-6 md:py-6 flex-shrink-0">
     <div class="flex items-center justify-end">
@@ -24,48 +27,9 @@
       <div class="relative w-full h-full flex items-center justify-center">
         <canvas
           #canvas
-          class="max-w-full max-h-full object-contain rounded-lg"
+          class="max-w-full h-full object-contain rounded-lg"
           style="background: #000"
         ></canvas>
-      </div>
-
-      <!-- Stats Panel - Responsive sizing -->
-      <div
-        class="absolute top-2 right-2 md:top-4 md:right-4 bg-black/60 backdrop-blur-md rounded-xl md:rounded-2xl px-3 py-2 md:px-5 md:py-4 border border-blue-500/30 min-w-32 md:min-w-48"
-      >
-        <div class="space-y-2 md:space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-gray-300 text-xs md:text-sm font-medium"
-              >Faces</span
-            >
-            <div
-              class="bg-blue-500 text-white px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-bold"
-            >
-              {{ faces.length }}
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between">
-            <span class="text-gray-300 text-xs md:text-sm font-medium"
-              >Status</span
-            >
-            <span
-              class="text-green-400 text-xs font-mono font-semibold bg-green-500/20 px-2 py-1 rounded-full"
-            >
-              {{ running ? "ACTIVE" : "LOADING" }}
-            </span>
-          </div>
-
-          <!-- Hide resolution on very small screens -->
-          <div class="hidden sm:flex items-center justify-between">
-            <span class="text-gray-300 text-xs md:text-sm font-medium"
-              >Resolution</span
-            >
-            <span class="text-blue-300 text-xs font-mono"
-              >{{ displayWidth }}×{{ displayHeight }}</span
-            >
-          </div>
-        </div>
       </div>
 
       <!-- Loading State -->
@@ -90,16 +54,6 @@
           <p class="text-gray-600 text-sm md:text-base">
             Loading face detection model...
           </p>
-        </div>
-      </div>
-
-      <!-- Performance Indicator - Mobile friendly -->
-      <div
-        class="absolute bottom-2 left-2 md:bottom-4 md:left-4 bg-black/60 backdrop-blur-md rounded-lg md:rounded-xl px-3 py-2 md:px-4 md:py-2 border border-yellow-500/30"
-      >
-        <div class="flex items-center space-x-2">
-          <i class="pi pi-gauge text-yellow-400 text-xs md:text-sm"></i>
-          <span class="text-yellow-400 text-xs font-mono">Real-time</span>
         </div>
       </div>
 
